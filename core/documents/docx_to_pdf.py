@@ -15,12 +15,16 @@ def convert_docx_to_pdf(docxFilePath):
     completePdfFilePath = outputDir / f"{fileName}.pdf"
     print(completePdfFilePath)
 
-    subprocess.run([
+    try:
+        subprocess.run([
         "soffice.exe", "--headless",
         "--convert-to", "pdf",
         str(docxFilePath),
         "--outdir", str(Path(completePdfFilePath).parent)
-    ], check=True)
+        ], check=True)
+    except:
+        print("Failed to convert file.")
+    
 
 
 
