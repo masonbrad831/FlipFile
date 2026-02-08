@@ -9,3 +9,4 @@ def convert_mp4_to_mp3(mp4Path):
         clip.close()
     except: 
         print("Failed to convert file!")
+

@@ -1,5 +1,6 @@
 from pathlib import Path
 import subprocess
+import os
 
 def get_filename_from_path(path):
     return Path((path.split("/"))[-1]).stem
@@ -25,3 +26,12 @@ def libre_file_conversion_command(fileType : str, fileDir, outputDir):
         "--outdir", str(outputDir)
         ], check=True)
     
+def delete_and_clear_temp_folder():
+    folder = get_output_directory()
+    print(folder)
+    for file in folder.iterdir():
+        if file.is_file():
+            try:
+                file.unlink()
+            except:
+                    print("Failed")
