@@ -1,28 +1,13 @@
 from pathlib import Path
 import subprocess
-
+from utils import utils
 
 
 def convert_docx_to_pdf(docxFilePath):
-    #Grab the file name
-    fileName = Path((docxFilePath.split("/"))[-1]).stem
-
-    #get temp folder location
-    scriptDir = Path(__file__).parent
-    outputDir = (scriptDir / "../../temp").resolve()
-    outputDir.mkdir(parents=True, exist_ok=True)
-    completePdfFilePath = outputDir / f"{fileName}.pdf"
-
     try:
-        subprocess.run([
-        "soffice.exe", "--headless",
-        "--convert-to", "pdf",
-        str(docxFilePath),
-        "--outdir", str(Path(completePdfFilePath).parent)
-        ], check=True)
+        utils.libre_conversion_command("pdf", docxFilePath, utils.get_output_directory())
     except:
         print("Failed to convert file.")
-    
 
 
 
