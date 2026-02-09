@@ -50,6 +50,8 @@ def convert_pdf_to_jpg(filepath: str):
 def convert_pdf_to_tiff(filepath : str):
     try:
         doc = pymupdf.open(filepath)
+        pix = doc[0].get_pixmap(dpi=300)
+        
     except Exception as e:
         print(e)
 
